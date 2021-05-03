@@ -10,7 +10,10 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -139,6 +142,11 @@ public class ArticleRunnable implements Runnable {
                     String urlToImage = articleContent.getString("urlToImage");
 
                     String publishedAt = articleContent.getString("publishedAt");
+
+                    //Format date
+                    DateFormat dateFormat = new SimpleDateFormat("MM dd, yyyy HH:mm");
+                    Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(publishedAt);
+                    publishedAt = dateFormat.format(date);
 
 
                     articleList.add(new Article(author, title, description, url, urlToImage, publishedAt));

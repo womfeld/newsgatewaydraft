@@ -73,34 +73,10 @@ public class ArticleFragment extends Fragment {
 
             //Change this one to accurately reflect time
             TextView publishedTime = fragment_layout.findViewById(R.id.timeStamp);
-
             String timestamp = currentArticle.getPublishedAt();
-
-            /*
-            String finalDate;
-            String d2 = "";
-
-
-            try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());
-                Date createdDate = simpleDateFormat.parse(timestamp.replaceAll("Z$", "+0000"));
-
-                simpleDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm", Locale.getDefault());
-                String newDate = simpleDateFormat.format(createdDate);
-
-                String [] d1 = newDate.split(" ");
-                finalDate = d1[1]+" "+ d1[2]+", 2021 "+d1[3];
-                d2 = finalDate;
-
-                //dateSet(finalDate);
-            }catch(Exception e) {
-                e.printStackTrace();
-            }
-
-            publishedTime.setText(d2);
-
-            */
             publishedTime.setText(timestamp);
+
+
 
             TextView author = fragment_layout.findViewById(R.id.author);
             author.setText(currentArticle.getAuthor());
