@@ -19,7 +19,8 @@ public class SourceRunnable implements Runnable {
 
 
     private final String prefixURL = "https://newsapi.org/v2/sources?language=en&country=us&category=";
-    private final String myAPIKey = "cac9bc5768d547209874208489e9e339";
+    //private final String myAPIKey = "cac9bc5768d547209874208489e9e339";
+    private final String myAPIKey = "63c267b58435414d84bbe4adf5f594ea";
 
 
     private static final String TAG = "SourceRunnable";

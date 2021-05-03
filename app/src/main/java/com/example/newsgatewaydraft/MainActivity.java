@@ -12,7 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -205,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
 
         sourceNameIdMap.clear();
 
+        //Gets the name and id of each source and puts them into a hashmap
         for (String s : nameMapIn.keySet()) {
             String id = nameMapIn.get(s);
             if (id == null)
@@ -212,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
             sourceNameIdMap.put(s, id);
         }
-
 
 
 
@@ -282,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    
+
 
 
 
@@ -296,13 +299,7 @@ public class MainActivity extends AppCompatActivity {
         String id = sourceNameIdMap.get(currentArticle);
 
 
-        //Fall back on
-        //ArticleRunnable rnn = new ArticleRunnable(this, id);
-        //new Thread(rnn).start();
-
-
         //Starts the article service given the id for the source
-        //Fall back on
         broadcastServiceWithID(id);
 
 
@@ -314,9 +311,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Gets the data for the Articles
     //Receives an arrayList of articles and then puts it into the fragment list and notifies the
-    //pageAdapter of a data chagne
-
-    //Shouldn't matter if this is called from the runnable or the service receiver ///////////////////// DELETE COMMENT LATER
+    //pageAdapter of a data change
+    //Shouldn't matter if this is called from the runnable or the service receiver
     public void setupArticles(ArrayList<Article> aList) {
 
         //Two main tasks in this method:
@@ -391,7 +387,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        setTitle(item.getTitle());
+        //Just commented out
+        //setTitle(item.getTitle());
 
 
 
@@ -428,12 +425,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     // You need this to set up the options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         opt_menu = menu;
         return true;
     }
+
+
+
+
+
+    /*
+    //Just added for colors
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        Integer[] colorarray = {Color.BLACK,Color.YELLOW,Color.BLUE,Color.GREEN,Color.RED,Color.CYAN,Color.MAGENTA,Color.DKGRAY};
+
+        for(int i =0; i<menu.size();i++){
+            MenuItem item = menu.getItem(i);
+            SpannableString s = new SpannableString(menu.getItem(i).getTitle().toString());
+            s.setSpan(new ForegroundColorSpan(colorarray[i]), 0, s.length(), 0);
+            item.setTitle(s);
+        }
+        return true;
+    }
+
+
+     */
+
+
 
 
 
